@@ -4,24 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- Header Fragment -->
     <fragment
         android:id="@+id/headerFragment"
-        android:name="com.association_coeur_de_france.controller.HeaderFragment"
+        android:name="com.association_coeur_de_france.controller.fragments.HeaderFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- Zone de contenu principal (à personnaliser plus tard) -->
     <FrameLayout
         android:id="@+id/mainContent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- Footer Fragment -->
     <fragment
         android:id="@+id/footerFragment"
-        android:name="com.association_coeur_de_france.controller.FooterFragment"
+        android:name="com.association_coeur_de_france.controller.fragments.FooterFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 </LinearLayout>

@@ -1,13 +1,13 @@
-package com.association_coeur_de_france.controller;
+package com.association_coeur_de_france.controller.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
+
 import com.association_coeur_de_france.R;
 import com.association_coeur_de_france.model.FooterModel;
 
@@ -15,21 +15,15 @@ public class FooterFragment extends Fragment {
 
     private FooterModel model;
 
-    @Nullable
+    public FooterFragment() {
+        // Obligatoire pour Fragment
+    }
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_footer, container, false);
-
-        // Initialiser le modèle
-        model = new FooterModel("Bienvenue dans le footer de l'application");
-
-        // Remplir la vue avec les données du modèle
-        TextView footerText = view.findViewById(R.id.footerText);
-        footerText.setText(model.getFooterText());
-
-        return view;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_footer, container, false);
+        Log.d("FooterFragment", "Footer fragment loaded");
+        return rootView;
     }
 }
