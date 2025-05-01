@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <color name="black">#000000</color>
+    <color name="darkblue">#050E7A</color>
+    <color name="grey">#D9D9D9</color>
+    <color name="lightblue">#9AABFF</color>
+    <color name="red">#EB3333</color>
+    <color name="transparent">#00FFFFFF</color> <!-- Transparent avec alpha -->
     <color name="white">#FFFFFFFF</color>
+    <color name="start_color">#130078</color>
+    <color name="end_color">#FF0000</color>
+    <color name="end_color2">#666666</color>
 </resources>

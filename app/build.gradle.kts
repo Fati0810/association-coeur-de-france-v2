@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.association_coeur_de_france"
+    namespace = "com.association_coeur_de_france"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.association_coeur_de_france"
+        applicationId = "com.association_coeur_de_france"
         minSdk = 21
         targetSdk = 35
         versionCode = 1
