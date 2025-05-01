@@ -1,4 +1,4 @@
-package com.association_coeur_de_france.controller;
+package com.association_coeur_de_france.controller.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

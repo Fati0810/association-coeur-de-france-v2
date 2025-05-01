@@ -1,17 +1,19 @@
 package com.association_coeur_de_france.model;
 
 public class FooterModel {
-    private String footerText;
+    private int iconResId;
+    private String label;
 
-    public FooterModel(String footerText) {
-        this.footerText = footerText;
+    public FooterModel(int iconResId, String label) {
+        this.iconResId = iconResId;
+        this.label = label;
     }
 
-    public String getFooterText() {
-        return footerText;
+    public int getIconResId() {
+        return iconResId;
     }
 
-    public void setFooterText(String footerText) {
-        this.footerText = footerText;
+    public String getLabel() {
+        return label;
     }
 }
