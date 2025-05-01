@@ -1,4 +1,4 @@
-package com.example.association_coeur_de_france;
+package com.association_coeur_de_france.association_coeur_de_france;
 
 import org.junit.Test;
 
