@@ -1,3 +1,39 @@
 <resources>
-    <string name="app_name">association-coeur-de-france</string>
+    <string name="app_name">association_coeur_de_france</string>
+    <string name="app_name2">Association Cœur de France</string>
+
+    <string name="header_title">Bienvenue sur notre application</string>
+
+    <string name="main_title">Appel aux dons pour le Think Tank</string>
+    <string name="sub_title">« Cœur de France »</string>
+    <string name="slogan">Faites un don</string>
+
+    <string name="message">
+        Chères concitoyennes, chers concitoyens,\n\n
+        Aujourd’hui, la France fait face à des défis majeurs. Parmi eux, un enjeu primordial se dessine : la revitalisation de nos territoires oubliés, ces régions délaissées où les citoyens se sentent souvent isolés, oubliés par les pouvoirs publics.\n\n
+        C’est pour répondre à ce défi que nous avons créé « Cœur de France », un think tank politique engagé, dont la mission est de produire et de diffuser des idées novatrices en matière de politiques publiques pour ces territoires.
+    </string>
+
+    <string name="btn_once">Je donne une fois</string>
+    <string name="btn_monthly">Je donne tous les mois</string>
+
+    <string name="amount_5">5 €</string>
+    <string name="amount_10">10 €</string>
+    <string name="amount_15">15 €</string>
+    <string name="amount_20">20 €</string>
+
+    <string name="custom_amount_label">Montant libre</string>
+    <string name="custom_amount_hint">Ex : 42</string>
+
+    <string name="btn_donate">Je donne</string>
+
+    <string name="accueil">Accueil</string>
+    <string name="adhesion">Adhésion</string>
+    <string name="message2">Message</string>
+    <string name="profil">Profil</string>
+    <string name="mouvement">Mouvement</string>
+    <string name="fragment_profil">Je suis le fragment profil</string>
+    <string name="fragment_message">Je suis le fragment message</string>
+    <string name="fragment_mouvement">Je suis le fragment mouvement</string>
+
 </resources>

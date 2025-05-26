@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- TITRE PRINCIPAL -->
+        <TextView
+            android:id="@+id/tvMainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_title"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sub_title"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp" />
+
+        <!-- SLOGAN -->
+        <TextView
+            android:id="@+id/tvSlogan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/slogan"
+            android:textColor="#2196F3"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:background="@color/red"/>
+
+        <!-- MESSAGE -->
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/message"/>
+
+        <!--
+        <LinearLayout
+            android:id="@+id/llDonationType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/btnOnce"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_once"
+                android:backgroundTint="#2196F3"
+                android:textColor="#FFFFFF"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnMonthly"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_monthly"
+                android:backgroundTint="#444444"
+                android:textColor="#FFFFFF"/>
+        </LinearLayout>
+        -->
+
+        <!-- MONTANTS FIXES -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:layout_marginBottom="20dp"
+            android:columnOrderPreserved="false"
+            android:background="@color/white">
+
+            <Button
+                android:id="@+id/button_amount_5"
+                android:text="@string/amount_5"
+                android:layout_margin="4dp"
+                android:textColor="@color/black"
+                android:background="@color/white" />
+
+            <Button
+                android:id="@+id/button_amount_10"
+                android:text="@string/amount_10"
+                android:layout_margin="4dp"
+                android:textColor="@color/black"
+                android:background="@color/white" />
+
+            <Button
+                android:id="@+id/button_amount_15"
+                android:text="@string/amount_15"
+                android:layout_margin="4dp"
+                android:textColor="@color/black"
+                android:background="@color/white" />
+
+            <Button
+                android:id="@+id/button_amount_20"
+                android:text="@string/amount_20"
+                android:layout_margin="4dp"
+                android:textColor="@color/black"
+                android:background="@color/white" />
+        </GridLayout>
+
+
+        <!-- MONTANT LIBRE -->
+        <TextView
+            android:id="@+id/tvCustomAmountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_amount_label"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etCustomAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/custom_amount_hint"
+            android:inputType="number"
+            android:textColor="#FFFFFF"
+            android:background="#222222"
+            android:layout_marginBottom="20dp" />
+
+        <!-- BOUTON DON -->
+        <Button
+            android:id="@+id/btnDonate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_donate"
+            android:backgroundTint="#2196F3"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</ScrollView>

@@ -1,43 +1,24 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/footer_container"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/red"
-    android:orientation="horizontal">
+    android:layout_height="match_parent"
+    android:background="@color/red">
 
     <LinearLayout
         android:id="@+id/footer"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="30dp"
-        android:weightSum="5">
+        android:padding="15dp"
+        android:weightSum="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/adhesion" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Adhésion"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:layout_marginTop="5dp" />
-        </LinearLayout>
-
-        <LinearLayout
+            android:id="@+id/btn_accueil"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_width="0dp"
@@ -51,13 +32,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Accueil"
+                android:text="@string/accueil"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:layout_marginTop="5dp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_adhesion"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/adhesion" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/adhesion"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_message"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_width="0dp"
@@ -71,13 +74,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Messages"
+                android:text="@string/message2"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:layout_marginTop="5dp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_profil"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_width="0dp"
@@ -91,13 +95,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Profil"
+                android:text="@string/profil"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:layout_marginTop="5dp" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_mouvement"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_width="0dp"
@@ -111,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Mouvement"
+                android:text="@string/mouvement"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:layout_marginTop="5dp" />
@@ -119,4 +124,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
