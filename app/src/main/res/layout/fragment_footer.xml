@@ -60,6 +60,27 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_mouvement"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/mouvement" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/mouvement"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/btn_message"
             android:orientation="vertical"
             android:gravity="center"
@@ -96,27 +117,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/profil"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:layout_marginTop="5dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_mouvement"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/mouvement" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/mouvement"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:layout_marginTop="5dp" />
