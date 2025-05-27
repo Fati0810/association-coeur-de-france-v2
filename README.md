@@ -1,40 +1,22 @@
-A modifier
+# Application mobile – Association Cœur de France
 
-Application mobile pour l'association Coeur de France. 
+Cette application mobile a été développée dans le cadre de ma formation de Concepteur Développeur d’Applications, en collaboration avec l’association Cœur de France, un mouvement politique.  
+Elle a pour objectif de renforcer la communication entre l’organisation et les citoyens, en centralisant les informations officielles, en facilitant l’engagement participatif, et en simplifiant la gestion des événements, des adhésions et des dons.
 
-L’association Cœur de France consistait à
-contribuer à la conception et au développement d’une application mobile destinée à améliorer
-la communication entre le mouvement politique et les citoyens. Cette application visait à
-centraliser les informations officielles, faciliter l’engagement citoyen à travers des outils
-interactifs (comme des sondages, une boîte à idées, et un forum), et simplifier la gestion des
-événements, des adhésions et des dons.
 
-## 🚀 Fonctionnalités
+À ce stade du développement, seules les fonctionnalités suivantes sont disponibles :
+- Connexion sécurisée avec email et mot de passe
+- Gestion des dons (saisie, consultation)
 
-- ✅ Fonction 1
-- ✅ Fonction 2
-- 🔒 Authentification / Sécurité
-- 📊 Tableau de bord, statistiques, etc.
+## Technologies utilisées
 
-## 🖼️ Capture(s) d'écran (facultatif)
+- Java
+- Android SDK
+- HelloAsso API
+- Git
 
-Ajoute une ou deux images pour montrer l’interface.
-
-## 🛠️ Technologies utilisées
-
-- Langage 1 (ex: Java)
-- Framework (ex: Android SDK)
-- API externe (ex: HelloAsso)
-- Outils (ex: Git, Firebase)
-
-## ⚙️ Installation
+## Installation
 
 ```bash
-# Cloner le dépôt
 git clone https://github.com/utilisateur/nom-du-projet.git
-
-# Aller dans le dossier du projet
 cd nom-du-projet
-
-# Lancer le projet
-[Instructions spécifiques : ./gradlew build, npm install, etc.]
