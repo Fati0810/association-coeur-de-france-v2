@@ -1,9 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Associationcoeurdefrance" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <style name="Theme.Associationcoeurdefrance" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Couleurs principales -->
+        <item name="colorPrimary">#6200EE</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+
+        <item name="colorOnBackground">#121212</item>
+
+        <!-- Couleurs des surfaces (cartes, champs...) -->
+        <item name="colorSurface">#F5F5F5</item>
+        <item name="colorOnSurface">#000000</item>
+
+        <!-- Couleurs d'erreur -->
+        <item name="colorError">#B00020</item>
+        <item name="colorOnError">#FFFFFF</item>
+
+        <!-- Polices / autres configs si besoin -->
+        <item name="android:windowBackground">#FFFFFF</item>
+
+
     </style>
 
-    <style name="Theme.Associationcoeurdefrance" parent="Base.Theme.Associationcoeurdefrance" />
 </resources>

@@ -18,5 +18,5 @@ Elle a pour objectif de renforcer la communication entre l’organisation et les
 ## Installation
 
 ```bash
-git clone https://github.com/utilisateur/nom-du-projet.git
-cd nom-du-projet
+git https://github.com/Fati0810/association-coeur-de-france-v2
+

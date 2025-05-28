@@ -11,6 +11,7 @@ import com.association_coeur_de_france.controller.fragments.HomeFragment;
 import com.association_coeur_de_france.controller.fragments.DonFragment;
 import com.association_coeur_de_france.controller.fragments.MessageFragment;
 import com.association_coeur_de_france.controller.fragments.MouvementFragment;
+import com.association_coeur_de_france.controller.fragments.LoginFragment;
 import com.association_coeur_de_france.controller.fragments.ProfilFragment;
 
 public class MainActivity extends AppCompatActivity implements FooterFragment.OnFooterButtonClickListener {
@@ -20,8 +21,10 @@ public class MainActivity extends AppCompatActivity implements FooterFragment.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Charger le fragment Home par défaut
-        loadFragment(new HomeFragment());
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.mainContent, new LoginFragment())
+                .commit();
     }
 
     @Override
@@ -45,11 +48,13 @@ public class MainActivity extends AppCompatActivity implements FooterFragment.On
         }
     }
 
-
-    private void loadFragment(Fragment fragment) {
+    public void loadFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.mainContent, fragment)
+                .addToBackStack(null) // Ajoute la transaction dans la pile pour revenir en arrière
                 .commit();
     }
 }
+
+

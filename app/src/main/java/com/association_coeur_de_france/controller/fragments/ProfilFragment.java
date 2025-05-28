@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.association_coeur_de_france.R;
-
 public class ProfilFragment extends Fragment {
     @Nullable
     @Override

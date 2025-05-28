@@ -4,23 +4,26 @@ public class UserModel {
     private String firstName;
     private String lastName;
     private String email;
-    private String emailConfirmation;
+    private String password;
+    private String passwordConfirmation;
     private String birthdate; // Peut être transformé en Date selon les besoins
     private String address;
     private String postalCode;
     private String city;
     private String country;
 
+    // Constructeur vide requis par certains frameworks
     public UserModel() {
-        // Constructeur vide requis par certains frameworks
     }
 
-    public UserModel(String firstName, String lastName, String email, String emailConfirmation,
+    // Constructeur avec tous les champs
+    public UserModel(String firstName, String lastName, String email, String password, String passwordConfirmation,
                      String birthdate, String address, String postalCode, String city, String country) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.emailConfirmation = emailConfirmation;
+        this.password = password;
+        this.passwordConfirmation = passwordConfirmation;
         this.birthdate = birthdate;
         this.address = address;
         this.postalCode = postalCode;
@@ -54,12 +57,20 @@ public class UserModel {
         this.email = email;
     }
 
-    public String getEmailConfirmation() {
-        return emailConfirmation;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmailConfirmation(String emailConfirmation) {
-        this.emailConfirmation = emailConfirmation;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordConfirmation() {
+        return passwordConfirmation;
+    }
+
+    public void setPasswordConfirmation(String passwordConfirmation) {
+        this.passwordConfirmation = passwordConfirmation;
     }
 
     public String getBirthdate() {

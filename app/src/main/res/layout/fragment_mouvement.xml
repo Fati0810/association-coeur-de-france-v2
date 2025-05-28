@@ -1,16 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/headerTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_mouvement"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginTop="32dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Titre principal -->
+        <TextView
+            android:id="@+id/titleMain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="COEUR DE FRANCE"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Sous-titre / description courte -->
+        <TextView
+            android:id="@+id/introText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Découvrez comment nous transformons les territoires oubliés de la République grâce à des actions concrètes et un engagement sans faille."
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"
+            app:layout_constraintTop_toBottomOf="@id/titleMain"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Phrase forte -->
+        <TextView
+            android:id="@+id/strongStatement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="DONNONS À CHACUN DES DROITS ÉGAUX"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#d32f2f"
+            android:textAlignment="center"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintTop_toBottomOf="@id/introText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Call to Action -->
+        <TextView
+            android:id="@+id/ctaText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Agissez avec Coeur de France\nRejoignez notre mouvement pour une démocratie plus forte et une société plus juste."
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:lineSpacingExtra="4dp"
+            android:textAlignment="center"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintTop_toBottomOf="@id/strongStatement"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Bouton ADHERER -->
+        <Button
+            android:id="@+id/buttonAdherer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADHÉRER"
+            android:textAllCaps="true"
+            android:backgroundTint="#d32f2f"
+            android:textColor="#ffffff"
+            app:layout_constraintTop_toBottomOf="@id/ctaText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Section Contexte -->
+        <TextView
+            android:id="@+id/contexteTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="CONTEXTE DE NOTRE MOUVEMENT"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/buttonAdherer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/contexteText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nous vivons une période historique particulière où nombre de schémas de pensée anciens n’en finissent pas de se décomposer sans qu’apparaisse clairement le signe d’un renouveau. Pour les territoires oubliés de la République, l’ampleur du chômage s’accompagne d’une crise de la politique et de la culture. Les réponses actuelles ne sont pas à la hauteur de la situation et favorisent plutôt le statu quo plongeant les populations qui y vivent dans une dépendance et un clientélisme sans nom dont le cadre est une « démocrature » locale.\n\nLe débat est souvent biaisé par la multitudes de faux débats et donc de fausses alternatives entre discours sécuritaire sévère envers les habitants de ces territoires et discours paternaliste culpabilisant les habitants.\n\n[...] (texte tronqué ici, à étendre selon besoin)"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"
+            app:layout_constraintTop_toBottomOf="@id/contexteTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Statistiques en ligne -->
+        <LinearLayout
+            android:id="@+id/statsLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintTop_toBottomOf="@id/contexteText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/membersCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="271"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#d32f2f" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Membres"
+                    android:textSize="14sp"
+                    android:textColor="#333333" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/volunteersCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="68"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#d32f2f" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volontaires"
+                    android:textSize="14sp"
+                    android:textColor="#333333" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/campaignsCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#d32f2f" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Campagnes"
+                    android:textSize="14sp"
+                    android:textColor="#333333" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Bouton rejoindre -->
+        <Button
+            android:id="@+id/buttonJoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rejoignez Coeur de France"
+            android:textAllCaps="false"
+            android:backgroundTint="#1976d2"
+            android:textColor="#ffffff"
+            app:layout_constraintTop_toBottomOf="@id/statsLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="24dp" />
+
+        <!-- FAQ Section -->
+        <TextView
+            android:id="@+id/faqTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="QUESTIONS FRÉQUEMMENT POSÉES"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/buttonJoin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Exemple de question -->
+        <TextView
+            android:id="@+id/faqQ1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="QUEL EST L'ENGAGEMENT DE COEUR DE FRANCE ENVERS LES CITOYENS ?"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#d32f2f"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintTop_toBottomOf="@id/faqTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/faqA1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Coeur de France s’engage à promouvoir la démocratie, l’éducation populaire et le développement économique à travers des actions concrètes et des débats constructifs."
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintTop_toBottomOf="@id/faqQ1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Plus de questions-réponses à ajouter de la même manière -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

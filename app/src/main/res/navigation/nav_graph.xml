@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/profilFragment">
+
+    <fragment
+        android:id="@+id/profilFragment"
+        android:name="com.association_coeur_de_france.controller.fragments.LoginFragment"
+        android:label="Profil">
+        <action
+            android:id="@+id/action_profil_to_register"
+            app:destination="@id/registerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.association_coeur_de_france.controller.fragments.RegisterFragment"
+        android:label="Register" />
+</navigation>
