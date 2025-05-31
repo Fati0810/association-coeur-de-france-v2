@@ -34,19 +34,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/profile_circle_bg" />
 
-
-    <!-- Nom et Prénom -->
+    <!-- Nom complet -->
     <TextView
         android:id="@+id/full_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Nom : Diallo Fatimata"
+        android:text="Nom complet : Diallo Fatimata"
         android:textSize="16sp"
         android:textColor="#000000"
         app:layout_constraintTop_toBottomOf="@id/profile_picture"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="24dp" />
+
+    <!-- Email -->
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Email : fatimata.diallo@example.com"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/full_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp" />
 
     <!-- Date de naissance -->
     <TextView
@@ -56,17 +68,17 @@
         android:text="Date de naissance : 08/10/2000"
         android:textSize="16sp"
         android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@id/full_name"
+        app:layout_constraintTop_toBottomOf="@id/email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="12dp" />
 
-    <!-- Adresse -->
+    <!-- Adresse complète -->
     <TextView
         android:id="@+id/address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Adresse : 123 rue de Paris"
+        android:text="Adresse : 123 rue de Paris, 75000 Paris, France"
         android:textSize="16sp"
         android:textColor="#000000"
         app:layout_constraintTop_toBottomOf="@id/birth_date"
@@ -86,5 +98,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="24dp" />
+
+    <!-- Bouton déconnexion -->
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Déconnexion"
+        app:layout_constraintTop_toBottomOf="@id/change_password_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#FFFFFF">
 
+    <!-- Titre de la page -->
     <TextView
         android:id="@+id/headerTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/fragment_message"
+        android:text="Messages"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#000000"
-        android:layout_marginTop="32dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Bulles de messages simulées -->
+    <ScrollView
+        android:id="@+id/messageScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/headerTitle"
+        app:layout_constraintBottom_toTopOf="@id/messageInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="8dp">
+
+            <!-- Message reçu -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="#E0E0E0"
+                android:padding="12dp"
+                android:layout_gravity="start"
+                android:orientation="vertical"
+                android:backgroundTint="#E0E0E0"
+                android:backgroundTintMode="src_in">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Salut, comment ça va ?"
+                    android:textSize="16sp"
+                    android:textColor="#000000"/>
+            </LinearLayout>
+
+            <!-- Message envoyé -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="#2196F3"
+                android:padding="12dp"
+                android:layout_gravity="end"
+                android:orientation="vertical"
+                android:backgroundTint="#2196F3"
+                android:backgroundTintMode="src_in">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ça va super, et toi ?"
+                    android:textSize="16sp"
+                    android:textColor="#FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Message reçu -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="#E0E0E0"
+                android:padding="12dp"
+                android:layout_gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Moi aussi 😊"
+                    android:textSize="16sp"
+                    android:textColor="#000000"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Zone de saisie de message -->
+    <LinearLayout
+        android:id="@+id/messageInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:background="#EEEEEE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Écrivez un message..."
+            android:background="@android:drawable/edit_text"
+            android:padding="8dp"
+            android:maxLines="4"
+            android:minHeight="48dp" />
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@android:drawable/ic_menu_send"
+            android:contentDescription="Envoyer"
+            android:background="@android:color/transparent"
+            android:tint="#2196F3" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
