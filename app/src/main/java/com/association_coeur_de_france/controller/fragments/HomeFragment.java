@@ -1,6 +1,5 @@
 package com.association_coeur_de_france.controller.fragments;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.association_coeur_de_france.R;
+import com.association_coeur_de_france.SessionManager;
 
 public class HomeFragment extends Fragment {
 
@@ -25,8 +25,13 @@ public class HomeFragment extends Fragment {
 
         welcomeText = view.findViewById(R.id.welcome_text);
 
-        SharedPreferences prefs = requireContext().getSharedPreferences("user_session", getContext().MODE_PRIVATE);
-        String firstName = prefs.getString("first_name", "Utilisateur");
+        // Utilisation de SessionManager pour récupérer le prénom
+        SessionManager sessionManager = new SessionManager(requireContext());
+        String firstName = sessionManager.getFirstName();
+
+        if (firstName == null || firstName.isEmpty()) {
+            firstName = "Utilisateur";
+        }
 
         welcomeText.setText("Bonjour " + firstName + " !");
 
