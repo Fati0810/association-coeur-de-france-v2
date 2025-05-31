@@ -26,10 +26,8 @@ import org.json.JSONObject;
 
 public class ProfilFragment extends Fragment {
 
-    private TextView fullNameTextView;
-    private TextView emailTextView;
-    private TextView birthDateTextView;
-    private TextView addressTextView;
+    private TextView fullNameTextView, emailTextView, birthDateTextView,
+            addressTextView, postalTextView, cityTextView, countryTextView;
 
     @Nullable
     @Override
@@ -37,16 +35,19 @@ public class ProfilFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profil, container, false);
 
-        fullNameTextView = view.findViewById(R.id.full_name);
-        emailTextView = view.findViewById(R.id.email);
-        birthDateTextView = view.findViewById(R.id.birth_date);
-        addressTextView = view.findViewById(R.id.address);
-        Button logoutButton = view.findViewById(R.id.logout_button);
+        fullNameTextView = view.findViewById(R.id.fullNameText);
+        emailTextView = view.findViewById(R.id.emailText);
+        birthDateTextView = view.findViewById(R.id.birthdateText);
+        addressTextView = view.findViewById(R.id.addressText);
+        postalTextView = view.findViewById(R.id.postalCodeText);
+        cityTextView = view.findViewById(R.id.cityText);
+        countryTextView = view.findViewById(R.id.countryText);
+
+        Button logoutButton = view.findViewById(R.id.logoutButton);
 
         loadUserData();
 
         logoutButton.setOnClickListener(v -> {
-            // Clear session
             SharedPreferences prefs = requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE);
             prefs.edit().clear().apply();
 
@@ -59,14 +60,14 @@ public class ProfilFragment extends Fragment {
 
     private void loadUserData() {
         SharedPreferences prefs = requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE);
-        String userId = prefs.getString("user_id", null);
+        int userId = prefs.getInt("id", -1); // Utilise bien l'identifiant en int
 
-        if (userId == null || userId.isEmpty()) {
+        if (userId == -1) {
             Toast.makeText(getContext(), "Utilisateur non connecté", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        ApiClient.getInstance(getContext()).getUserById(Integer.parseInt(userId), new Response.Listener<String>() {
+        ApiClient.getInstance(getContext()).getUserById(userId, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -90,8 +91,10 @@ public class ProfilFragment extends Fragment {
                     fullNameTextView.setText("Nom complet : " + user.getLastName() + " " + user.getFirstName());
                     emailTextView.setText("Email : " + user.getEmail());
                     birthDateTextView.setText("Date de naissance : " + user.getBirthdate());
-                    String fullAddress = user.getAddress() + ", " + user.getPostalCode() + " " + user.getCity() + ", " + user.getCountry();
-                    addressTextView.setText("Adresse : " + fullAddress);
+                    addressTextView.setText("Adresse : " + user.getAddress());
+                    postalTextView.setText("Code postal : " + user.getPostalCode());
+                    cityTextView.setText("Ville : " + user.getCity());
+                    countryTextView.setText("Pays : " + user.getCountry());
 
                 } catch (JSONException e) {
                     e.printStackTrace();
