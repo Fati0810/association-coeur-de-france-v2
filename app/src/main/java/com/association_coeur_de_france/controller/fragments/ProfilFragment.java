@@ -1,7 +1,5 @@
 package com.association_coeur_de_france.controller.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.association_coeur_de_france.R;
+import com.association_coeur_de_france.SessionManager;
 import com.association_coeur_de_france.controller.MainActivity;
 import com.association_coeur_de_france.model.UserModel;
 import com.association_coeur_de_france.network.ApiClient;
@@ -48,8 +47,8 @@ public class ProfilFragment extends Fragment {
         loadUserData();
 
         logoutButton.setOnClickListener(v -> {
-            SharedPreferences prefs = requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE);
-            prefs.edit().clear().apply();
+            SessionManager sessionManager = new SessionManager(requireContext());
+            sessionManager.clearSession();
 
             Toast.makeText(getContext(), "Déconnexion réussie", Toast.LENGTH_SHORT).show();
             ((MainActivity) requireActivity()).loadFragment(new LoginFragment());
@@ -59,8 +58,8 @@ public class ProfilFragment extends Fragment {
     }
 
     private void loadUserData() {
-        SharedPreferences prefs = requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE);
-        int userId = prefs.getInt("id", -1); // Utilise bien l'identifiant en int
+        SessionManager sessionManager = new SessionManager(requireContext());
+        int userId = sessionManager.getId();  // Il faut ajouter cette méthode dans SessionManager
 
         if (userId == -1) {
             Toast.makeText(getContext(), "Utilisateur non connecté", Toast.LENGTH_SHORT).show();

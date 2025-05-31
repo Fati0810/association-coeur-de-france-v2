@@ -161,4 +161,49 @@ public class ApiClient {
 
         addToRequestQueue(getRequest);
     }
+
+    public interface ResetPasswordCallback {
+        void onSuccess(String message);
+        void onError(String message);
+    }
+
+    public void resetPassword(String email, ResetPasswordCallback callback) {
+        String url = BASE_URL + "forgot_password.php";
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+                    try {
+                        JSONObject json = new JSONObject(response);
+                        String status = json.getString("status");
+                        String message = json.optString("message", "Pas de message");
+
+                        if (status.equals("success")) {
+                            callback.onSuccess(message);
+                        } else {
+                            callback.onError(message);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        callback.onError("Erreur de parsing JSON");
+                    }
+                },
+                error -> {
+                    callback.onError("Erreur réseau : " + error.getMessage());
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                return params;
+            }
+        };
+
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        addToRequestQueue(postRequest);
+    }
+
 }
