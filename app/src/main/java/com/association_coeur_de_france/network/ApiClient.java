@@ -49,9 +49,12 @@ public class ApiClient {
 
     // Interface callback spécifique pour login
     public interface LoginCallback {
-        void onSuccess(String email, String token);
+        void onSuccess(int id, String firstName, String lastName, String email, String token,
+                       String birthdate, String address, String postalCode,
+                       String city, String country, String createdAt);
         void onError(String message);
     }
+
 
     // Méthode loginUser avec Volley et callback personnalisé
     public void loginUser(String email, String password, LoginCallback callback) {
@@ -64,8 +67,25 @@ public class ApiClient {
                         String status = json.getString("status");
                         if (status.equals("success")) {
                             String token = json.getString("token");
-                            String userEmail = json.getString("email");
-                            callback.onSuccess(userEmail, token);
+
+                            JSONObject userJson = json.getJSONObject("user");
+                            int id = userJson.getInt("id");
+                            String firstName = userJson.getString("first_name");
+                            String lastName = userJson.getString("last_name");
+                            String userEmail = userJson.getString("email");
+                            String birthdate = userJson.optString("birthdate", "");
+                            String address = userJson.optString("address", "");
+                            String postalCode = userJson.optString("postal_code", "");
+                            String city = userJson.optString("city", "");
+                            String country = userJson.optString("country", "");
+                            String createdAt = userJson.optString("created_at", "");
+
+                            // Passe toutes les infos dans le callback
+                            callback.onSuccess(
+                                    id, firstName, lastName, userEmail, token,
+                                    birthdate, address, postalCode, city, country, createdAt
+                            );
+
                         } else {
                             String message = json.optString("message", "Erreur inconnue");
                             callback.onError(message);
@@ -94,6 +114,8 @@ public class ApiClient {
 
         addToRequestQueue(postRequest);
     }
+
+
 
 
     // Garde les autres méthodes telles quelles

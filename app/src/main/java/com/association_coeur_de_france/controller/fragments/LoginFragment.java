@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment;
 import com.association_coeur_de_france.R;
 import com.association_coeur_de_france.controller.MainActivity;
 import com.association_coeur_de_france.network.ApiClient;
-import com.association_coeur_de_france.network.LoginCallback;
 
 public class LoginFragment extends Fragment {
 
@@ -66,9 +65,11 @@ public class LoginFragment extends Fragment {
 
         ApiClient.getInstance(requireContext()).loginUser(email, password, new ApiClient.LoginCallback() {
             @Override
-            public void onSuccess(String email, String token) {
+            public void onSuccess(int id, String firstName, String lastName, String email, String token,
+                                  String birthdate, String address, String postalCode,
+                                  String city, String country, String createdAt) {
                 loginButton.setEnabled(true);
-                saveSession(email, token);
+                saveSession(id, firstName, lastName, email, token, birthdate, address, postalCode, city, country, createdAt);
                 Toast.makeText(getContext(), "Connexion réussie !", Toast.LENGTH_SHORT).show();
                 ((MainActivity) requireActivity()).loadFragment(new HomeFragment());
             }
@@ -79,13 +80,28 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getContext(), "Erreur : " + message, Toast.LENGTH_LONG).show();
             }
         });
+
     }
 
-    private void saveSession(String email, String token) {
+    private void saveSession(int id, String firstName, String lastName, String email, String token,
+                             String birthdate, String address, String postalCode,
+                             String city, String country, String createdAt) {
         SharedPreferences prefs = requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putInt("id", id);
+        editor.putString("first_name", firstName);
+        editor.putString("last_name", lastName);
         editor.putString("email", email);
         editor.putString("token", token);
+        editor.putString("birthdate", birthdate);
+        editor.putString("address", address);
+        editor.putString("postal_code", postalCode);
+        editor.putString("city", city);
+        editor.putString("country", country);
+        editor.putString("created_at", createdAt);
+
         editor.apply();
     }
+
 }
