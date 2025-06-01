@@ -19,6 +19,7 @@
         android:id="@+id/mainContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/headerFragment"
         app:layout_constraintBottom_toTopOf="@id/footerFragment"
         app:layout_constraintStart_toStartOf="parent"

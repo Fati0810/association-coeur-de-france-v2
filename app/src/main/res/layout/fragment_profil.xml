@@ -18,7 +18,7 @@
             android:text="Mon Profil"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="#000000"
+            android:textColor="@color/darkblue"
             android:layout_marginBottom="24dp" />
 
         <ImageView
@@ -26,7 +26,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/icon"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="0dp"
             android:scaleType="centerCrop"
             app:layout_constraintTop_toBottomOf="@id/profileTitle"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,8 @@
             android:layout_height="wrap_content"
             android:text="Nom :"
             android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:id="@+id/emailText"
@@ -48,7 +49,8 @@
             android:layout_height="wrap_content"
             android:text="Email :"
             android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:id="@+id/birthdateText"
@@ -56,6 +58,7 @@
             android:layout_height="wrap_content"
             android:text="Date de naissance :"
             android:textSize="18sp"
+            android:textColor="@color/darkblue"
             android:layout_marginBottom="8dp" />
 
         <TextView
@@ -64,7 +67,8 @@
             android:layout_height="wrap_content"
             android:text="Adresse :"
             android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:id="@+id/postalCodeText"
@@ -72,7 +76,8 @@
             android:layout_height="wrap_content"
             android:text="Code postal :"
             android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:id="@+id/cityText"
@@ -80,7 +85,8 @@
             android:layout_height="wrap_content"
             android:text="Ville :"
             android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:id="@+id/countryText"
@@ -88,6 +94,7 @@
             android:layout_height="wrap_content"
             android:text="Pays :"
             android:textSize="18sp"
+            android:textColor="@color/darkblue"
             android:layout_marginBottom="24dp" />
 
         <Button
@@ -96,7 +103,7 @@
             android:layout_height="wrap_content"
             android:text="Déconnexion"
             android:textAllCaps="false"
-            android:backgroundTint="#D32F2F"
+            android:backgroundTint="@color/darkblue"
             android:textColor="#FFFFFF"
             android:layout_marginTop="16dp" />
 

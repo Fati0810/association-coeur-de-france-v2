@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/adhesion"
+                android:text="@string/don"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:layout_marginTop="5dp" />
