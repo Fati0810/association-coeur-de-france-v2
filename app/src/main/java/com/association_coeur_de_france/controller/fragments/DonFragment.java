@@ -42,16 +42,46 @@ public class DonFragment extends Fragment {
         btn15.setOnClickListener(v -> selectAmount(15));
         btn20.setOnClickListener(v -> selectAmount(20));
 
-        btnDonate.setOnClickListener(v -> processDonation());
+        // Listener du bouton DON
+        btnDonate.setOnClickListener(v -> {
+            int montant = getMontantSelectionne();
+            if (montant <= 0) {
+                Toast.makeText(getContext(), "Veuillez choisir ou saisir un montant.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-       btnDonate.setOnClickListener(v -> {
+            // Préparer et passer le fragment récapitulatif avec le montant
+            RecapitulatifFragment recapFragment = new RecapitulatifFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("selected_amount", montant);
+            recapFragment.setArguments(bundle);
+
+            // Remplacer le fragment actuel par le fragment récapitulatif
             if (getActivity() instanceof MainActivity) {
-                ((MainActivity) getActivity()).loadFragment(new InfosFragment());
+                ((MainActivity) getActivity()).loadFragment(recapFragment);
             }
         });
 
         return view;
     }
+
+    // Méthode pour récupérer le montant (fixe ou saisi)
+    private int getMontantSelectionne() {
+        String customText = etCustomAmount.getText().toString().trim();
+        if (!customText.isEmpty()) {
+            try {
+                return Integer.parseInt(customText);
+            } catch (NumberFormatException e) {
+                Toast.makeText(getContext(), "Veuillez entrer un montant valide.", Toast.LENGTH_SHORT).show();
+                return -1;
+            }
+        } else if (selectedAmount > 0) {
+            return selectedAmount;
+        } else {
+            return -1;
+        }
+    }
+
 
     private void selectAmount(int amount) {
         selectedAmount = amount;

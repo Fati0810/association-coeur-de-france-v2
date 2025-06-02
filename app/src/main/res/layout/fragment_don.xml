@@ -147,7 +147,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/custom_amount_hint"
             android:inputType="number"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:layout_marginBottom="20dp" />
 
         <!-- BOUTON DON -->
