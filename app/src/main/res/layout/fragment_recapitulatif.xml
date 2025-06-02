@@ -123,7 +123,7 @@
         android:textColor="@color/darkblue"
         android:layout_marginTop="16dp"
         android:textSize="8sp"
-
+        android:buttonTint="@color/darkblue"
         app:layout_constraintTop_toBottomOf="@id/checkboxUnderstood"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

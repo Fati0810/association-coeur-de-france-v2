@@ -22,9 +22,9 @@ public class ApiClient {
     private RequestQueue requestQueue;
     private static Context ctx;
 
-    private static final String BASE_URL = "http://192.168.1.100:8888/mon_api/";
+    // private static final String BASE_URL = "http://192.168.1.100:8888/mon_api/";
 
-    // private static final String BASE_URL = "http://192.168.1.70:8888/mon_api/";
+    private static final String BASE_URL = "http://192.168.1.69:8888/mon_api/";
 
 
     private ApiClient(Context context) {
