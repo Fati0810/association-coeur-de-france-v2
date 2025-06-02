@@ -60,41 +60,6 @@
             android:justificationMode="inter_word" />
 
 
-        <!--
-        <LinearLayout
-            android:id="@+id/llDonationType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="20dp">
-
-            <Button
-                android:id="@+id/btnOnce"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_once"
-                android:backgroundTint="#2196F3"
-                android:textColor="#FFFFFF"
-                android:layout_marginEnd="8dp"/>
-
-            <Button
-                android:id="@+id/btnMonthly"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_monthly"
-                android:backgroundTint="#444444"
-                android:textColor="#FFFFFF"/>
-        </LinearLayout>
-        -->
-
-        <!-- MONTANTS FIXES -->
-
-
-        <!-- MONTANT LIBRE -->
-
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
