@@ -1,6 +1,8 @@
 package com.association_coeur_de_france.controller.fragments;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,23 +55,10 @@ public class RegisterFragment extends Fragment {
         });
 
         registerButton.setOnClickListener(v -> {
-            if (!passwordInput.getText().toString().equals(passwordInputConfirmation.getText().toString())) {
-                Toast.makeText(getContext(), "Les mots de passe ne correspondent pas", Toast.LENGTH_SHORT).show();
-                return;
-            }
+            UserModel user = validateAndCreateUser();
+            if (user == null) return;
 
-            UserModel user = new UserModel(
-                    firstNameInput.getText().toString(),
-                    lastNameInput.getText().toString(),
-                    emailInput.getText().toString(),
-                    passwordInput.getText().toString(),
-                    passwordInputConfirmation.getText().toString(),
-                    birthdateInput.getText().toString(),
-                    addressInput.getText().toString(),
-                    postalCodeInput.getText().toString(),
-                    cityInput.getText().toString(),
-                    countryInput.getText().toString()
-            );
+            registerButton.setEnabled(false); // Désactive le bouton pendant la requête
 
             sendUserData(user);
         });
@@ -77,16 +66,61 @@ public class RegisterFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Valide les champs, affiche les erreurs via Toast si besoin, et crée l'objet UserModel.
+     * @return UserModel si valide, sinon null
+     */
+    private UserModel validateAndCreateUser() {
+        String firstName = firstNameInput.getText().toString().trim();
+        String lastName = lastNameInput.getText().toString().trim();
+        String email = emailInput.getText().toString().trim();
+        String password = passwordInput.getText().toString();
+        String passwordConfirm = passwordInputConfirmation.getText().toString();
+        String birthdate = birthdateInput.getText().toString().trim();
+        String address = addressInput.getText().toString().trim();
+        String postalCode = postalCodeInput.getText().toString().trim();
+        String city = cityInput.getText().toString().trim();
+        String country = countryInput.getText().toString().trim();
+
+        if (TextUtils.isEmpty(firstName) || TextUtils.isEmpty(lastName) || TextUtils.isEmpty(email) ||
+                TextUtils.isEmpty(password) || TextUtils.isEmpty(passwordConfirm) || TextUtils.isEmpty(birthdate)) {
+            Toast.makeText(getContext(), "Veuillez remplir tous les champs obligatoires", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(getContext(), "Veuillez saisir un email valide", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+        if (!password.equals(passwordConfirm)) {
+            Toast.makeText(getContext(), "Les mots de passe ne correspondent pas", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+        if (password.length() < 6) {
+            Toast.makeText(getContext(), "Le mot de passe doit contenir au moins 6 caractères", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+        return new UserModel(firstName, lastName, email, password, passwordConfirm,
+                birthdate, address, postalCode, city, country);
+    }
+
     private void sendUserData(UserModel user) {
         ApiClient.getInstance(requireContext()).registerUser(user,
-                response -> Toast.makeText(getActivity(), "Inscription réussie !", Toast.LENGTH_SHORT).show(),
+                response -> {
+                    Toast.makeText(getContext(), "Inscription réussie !", Toast.LENGTH_SHORT).show();
+                    registerButton.setEnabled(true);
+                    // Tu peux aussi naviguer vers login ou autre ici
+                },
                 error -> {
                     if (error.getCause() != null) {
                         error.getCause().printStackTrace();
                     }
-                    Toast.makeText(getActivity(), "Erreur réseau : " + error.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Erreur réseau : " + error.getMessage(), Toast.LENGTH_LONG).show();
+                    registerButton.setEnabled(true);
                 }
         );
     }
-
 }

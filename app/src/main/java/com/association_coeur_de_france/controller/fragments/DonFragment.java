@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.association_coeur_de_france.R;
+import com.association_coeur_de_france.controller.MainActivity;
 import com.association_coeur_de_france.model.DonModel;
 
 public class DonFragment extends Fragment {
@@ -42,6 +43,12 @@ public class DonFragment extends Fragment {
         btn20.setOnClickListener(v -> selectAmount(20));
 
         btnDonate.setOnClickListener(v -> processDonation());
+
+       btnDonate.setOnClickListener(v -> {
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).loadFragment(new InfosFragment());
+            }
+        });
 
         return view;
     }

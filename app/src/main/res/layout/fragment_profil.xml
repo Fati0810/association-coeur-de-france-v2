@@ -1,90 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="#FFFFFF">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="24dp">
 
-    <!-- Titre centré en haut -->
-    <TextView
-        android:id="@+id/headerTitle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mon compte"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-    <!-- Photo de profil centrée sous le titre -->
-    <ImageView
-        android:id="@+id/profile_picture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/icon"
-        android:layout_marginTop="16dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toBottomOf="@id/headerTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/profile_circle_bg" />
+        <TextView
+            android:id="@+id/profileTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mon Profil"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="24dp" />
 
+        <ImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon"
+            android:layout_marginTop="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@id/profileTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/profile_circle_bg"
+            android:layout_marginBottom="24dp"/>
 
-    <!-- Nom et Prénom -->
-    <TextView
-        android:id="@+id/full_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Nom : Diallo Fatimata"
-        android:textSize="16sp"
-        android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@id/profile_picture"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        <TextView
+            android:id="@+id/fullNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nom :"
+            android:textSize="18sp"
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="6dp" />
 
-    <!-- Date de naissance -->
-    <TextView
-        android:id="@+id/birth_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Date de naissance : 08/10/2000"
-        android:textSize="16sp"
-        android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@id/full_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp" />
+        <TextView
+            android:id="@+id/emailText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email :"
+            android:textSize="18sp"
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="6dp" />
 
-    <!-- Adresse -->
-    <TextView
-        android:id="@+id/address"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Adresse : 123 rue de Paris"
-        android:textSize="16sp"
-        android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@id/birth_date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp" />
+        <TextView
+            android:id="@+id/birthdateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date de naissance :"
+            android:textSize="18sp"
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="8dp" />
 
-    <!-- Bouton changer mot de passe -->
-    <Button
-        android:id="@+id/change_password_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Modifier mon mot de passe"
-        android:backgroundTint="@color/darkblue"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/address"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        <TextView
+            android:id="@+id/addressText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adresse :"
+            android:textSize="18sp"
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="6dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/postalCodeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Code postal :"
+            android:textSize="18sp"
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="6dp" />
+
+        <TextView
+            android:id="@+id/cityText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ville :"
+            android:textSize="18sp"
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="6dp" />
+
+        <TextView
+            android:id="@+id/countryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pays :"
+            android:textSize="18sp"
+            android:textColor="@color/darkblue"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Déconnexion"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/darkblue"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

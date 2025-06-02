@@ -1,6 +1,7 @@
 package com.association_coeur_de_france.network;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -10,6 +11,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.association_coeur_de_france.model.UserModel;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +21,11 @@ public class ApiClient {
     private static ApiClient instance;
     private RequestQueue requestQueue;
     private static Context ctx;
+
+    private static final String BASE_URL = "http://192.168.1.100:8888/mon_api/";
+
+    // private static final String BASE_URL = "http://192.168.1.70:8888/mon_api/";
+
 
     private ApiClient(Context context) {
         ctx = context;
@@ -41,8 +50,81 @@ public class ApiClient {
         getRequestQueue().add(req);
     }
 
+    // Interface callback spécifique pour login
+    public interface LoginCallback {
+        void onSuccess(int id, String firstName, String lastName, String email, String token,
+                       String birthdate, String address, String postalCode,
+                       String city, String country, String createdAt);
+        void onError(String message);
+    }
+
+
+    // Méthode loginUser avec Volley et callback personnalisé
+    public void loginUser(String email, String password, LoginCallback callback) {
+        String url = BASE_URL + "login_user.php";
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+                    try {
+                        JSONObject json = new JSONObject(response);
+                        String status = json.getString("status");
+                        if (status.equals("success")) {
+                            String token = json.getString("token");
+
+                            JSONObject userJson = json.getJSONObject("user");
+                            int id = userJson.getInt("id");
+                            String firstName = userJson.getString("first_name");
+                            String lastName = userJson.getString("last_name");
+                            String userEmail = userJson.getString("email");
+                            String birthdate = userJson.optString("birthdate", "");
+                            String address = userJson.optString("address", "");
+                            String postalCode = userJson.optString("postal_code", "");
+                            String city = userJson.optString("city", "");
+                            String country = userJson.optString("country", "");
+                            String createdAt = userJson.optString("created_at", "");
+
+                            // Passe toutes les infos dans le callback
+                            callback.onSuccess(
+                                    id, firstName, lastName, userEmail, token,
+                                    birthdate, address, postalCode, city, country, createdAt
+                            );
+
+                        } else {
+                            String message = json.optString("message", "Erreur inconnue");
+                            callback.onError(message);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        callback.onError("Erreur de parsing JSON");
+                    }
+                },
+                error -> {
+                    callback.onError("Erreur réseau : " + error.getMessage());
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                params.put("password", password);
+                return params;
+            }
+        };
+
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        addToRequestQueue(postRequest);
+    }
+
+
+
+
+    // Garde les autres méthodes telles quelles
+
     public void registerUser(UserModel user, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-        String url = "http://192.168.1.69:8888/mon_api/insert_user.php";
+        String url = BASE_URL + "insert_user.php";
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url, listener, errorListener) {
             @Override
@@ -62,7 +144,63 @@ public class ApiClient {
             }
         };
 
-        // Timeout et retry policy
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        addToRequestQueue(postRequest);
+    }
+
+    public void getUserById(int userId, Response.Listener<String> listener, Response.ErrorListener errorListener) {
+        String url = BASE_URL + "get_user.php?id=" + userId;
+
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url, listener, errorListener);
+
+        getRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        addToRequestQueue(getRequest);
+    }
+
+    public interface ResetPasswordCallback {
+        void onSuccess(String message);
+        void onError(String message);
+    }
+
+    public void resetPassword(String email, ResetPasswordCallback callback) {
+        String url = BASE_URL + "forgot_password.php";
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+                    try {
+                        JSONObject json = new JSONObject(response);
+                        String status = json.getString("status");
+                        String message = json.optString("message", "Pas de message");
+
+                        if (status.equals("success")) {
+                            callback.onSuccess(message);
+                        } else {
+                            callback.onError(message);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        callback.onError("Erreur de parsing JSON");
+                    }
+                },
+                error -> {
+                    callback.onError("Erreur réseau : " + error.getMessage());
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                return params;
+            }
+        };
+
         postRequest.setRetryPolicy(new DefaultRetryPolicy(
                 10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
