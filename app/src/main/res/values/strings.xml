@@ -8,11 +8,14 @@
     <string name="sub_title">« Cœur de France »</string>
     <string name="slogan">Faites un don</string>
 
-    <string name="message">
-        Chères concitoyennes, chers concitoyens,\n\n
-        Aujourd’hui, la France fait face à des défis majeurs. Parmi eux, un enjeu primordial se dessine : la revitalisation de nos territoires oubliés, ces régions délaissées où les citoyens se sentent souvent isolés, oubliés par les pouvoirs publics.\n\n
-        C’est pour répondre à ce défi que nous avons créé « Cœur de France », un think tank politique engagé, dont la mission est de produire et de diffuser des idées novatrices en matière de politiques publiques pour ces territoires.
-    </string>
+    <string name="message"><![CDATA[
+    Chères concitoyennes, chers concitoyens,\n\n
+
+    Aujourd’hui, la France fait face à des défis majeurs. Parmi eux, un enjeu primordial se dessine : la revitalisation de nos territoires oubliés, ces régions délaissées où les citoyens se sentent souvent isolés, oubliés par les pouvoirs publics.\n\n
+
+    C’est pour répondre à ce défi que nous avons créé « Cœur de France », un think tank politique engagé, dont la mission est de produire et de diffuser des idées novatrices en matière de politiques publiques pour ces territoires.
+]]></string>
+
 
     <string name="btn_once">Je donne une fois</string>
     <string name="btn_monthly">Je donne tous les mois</string>
@@ -28,12 +31,20 @@
     <string name="btn_donate">Je donne</string>
 
     <string name="accueil">Accueil</string>
-    <string name="adhesion">Adhésion</string>
+    <string name="don">Don</string>
     <string name="message2">Message</string>
     <string name="profil">Profil</string>
     <string name="mouvement">Mouvement</string>
     <string name="fragment_profil">Je suis le fragment profil</string>
     <string name="fragment_message">Je suis le fragment message</string>
     <string name="fragment_mouvement">Je suis le fragment mouvement</string>
+
+    <!-- Page mot de passe oublié -->
+    <string name="forgot_title">Mot de passe oublié</string>
+    <string name="forgot_hint">Entrez votre email</string>
+    <string name="forgot_button">Envoyer</string>
+
+    <string name="logo_desc">Logo de l\'association Cœur de France</string>
+
 
 </resources>
