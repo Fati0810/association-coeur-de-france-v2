@@ -10,16 +10,18 @@
         android:orientation="vertical">
 
         <!-- TITRE PRINCIPAL -->
+
         <TextView
             android:id="@+id/tvMainTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="4dp"
             android:text="@string/main_title"
             android:textColor="@color/darkblue"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="4dp" />
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvSubTitle"
@@ -27,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="@string/sub_title"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp" />
@@ -54,7 +56,9 @@
             android:textColor="#000000"
             android:textSize="14sp"
             android:layout_marginBottom="20dp"
-            android:text="@string/message"/>
+            android:text="@string/message"
+            android:justificationMode="inter_word" />
+
 
         <!--
         <LinearLayout
@@ -90,6 +94,7 @@
 
 
         <!-- MONTANT LIBRE -->
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -150,8 +155,8 @@
             android:id="@+id/btnDonate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_donate"
             android:backgroundTint="@color/darkblue"
+            android:text="@string/btn_donate"
             android:textColor="@color/white" />
     </LinearLayout>
 </ScrollView>

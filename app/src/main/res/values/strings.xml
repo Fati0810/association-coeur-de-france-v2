@@ -8,11 +8,14 @@
     <string name="sub_title">« Cœur de France »</string>
     <string name="slogan">Faites un don</string>
 
-    <string name="message">
-        Chères concitoyennes, chers concitoyens,\n\n
-        Aujourd’hui, la France fait face à des défis majeurs. Parmi eux, un enjeu primordial se dessine : la revitalisation de nos territoires oubliés, ces régions délaissées où les citoyens se sentent souvent isolés, oubliés par les pouvoirs publics.\n\n
-        C’est pour répondre à ce défi que nous avons créé « Cœur de France », un think tank politique engagé, dont la mission est de produire et de diffuser des idées novatrices en matière de politiques publiques pour ces territoires.
-    </string>
+    <string name="message"><![CDATA[
+    Chères concitoyennes, chers concitoyens,\n\n
+
+    Aujourd’hui, la France fait face à des défis majeurs. Parmi eux, un enjeu primordial se dessine : la revitalisation de nos territoires oubliés, ces régions délaissées où les citoyens se sentent souvent isolés, oubliés par les pouvoirs publics.\n\n
+
+    C’est pour répondre à ce défi que nous avons créé « Cœur de France », un think tank politique engagé, dont la mission est de produire et de diffuser des idées novatrices en matière de politiques publiques pour ces territoires.
+]]></string>
+
 
     <string name="btn_once">Je donne une fois</string>
     <string name="btn_monthly">Je donne tous les mois</string>
