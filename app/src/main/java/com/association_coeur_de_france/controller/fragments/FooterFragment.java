@@ -36,12 +36,10 @@ public class FooterFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_footer, container, false);
 
-        rootView.findViewById(R.id.btn_accueil).setOnClickListener(v -> listener.onFooterButtonClick(R.id.btn_accueil));
-        rootView.findViewById(R.id.btn_adhesion).setOnClickListener(v -> listener.onFooterButtonClick(R.id.btn_adhesion));
-        rootView.findViewById(R.id.btn_message).setOnClickListener(v -> listener.onFooterButtonClick(R.id.btn_message));
-        rootView.findViewById(R.id.btn_profil).setOnClickListener(v -> listener.onFooterButtonClick(R.id.btn_profil));
-        rootView.findViewById(R.id.btn_mouvement).setOnClickListener(v -> listener.onFooterButtonClick(R.id.btn_mouvement));
-
+        int[] buttonIds = {R.id.btn_accueil, R.id.btn_adhesion, R.id.btn_message, R.id.btn_profil, R.id.btn_mouvement};
+        for (int id : buttonIds) {
+            rootView.findViewById(id).setOnClickListener(v -> listener.onFooterButtonClick(id));
+        }
         return rootView;
     }
 }

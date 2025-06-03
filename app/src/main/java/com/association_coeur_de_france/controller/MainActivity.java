@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import com.association_coeur_de_france.R;
 import com.association_coeur_de_france.controller.fragments.FooterFragment;
+import com.association_coeur_de_france.controller.fragments.HeaderFragment;
 import com.association_coeur_de_france.controller.fragments.HomeFragment;
 import com.association_coeur_de_france.controller.fragments.DonFragment;
 import com.association_coeur_de_france.controller.fragments.MessageFragment;
@@ -20,6 +21,16 @@ public class MainActivity extends AppCompatActivity implements FooterFragment.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.headerFragment, new HeaderFragment())
+                .commit();
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.footerFragment, new FooterFragment())
+                .commit();
 
         getSupportFragmentManager()
                 .beginTransaction()
