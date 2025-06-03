@@ -41,13 +41,13 @@ public class LoginFragment extends Fragment {
         registerLink = view.findViewById(R.id.register_link);
 
         registerLink.setOnClickListener(v -> {
-            if (getActivity() instanceof MainActivity) {
-                ((MainActivity) getActivity()).loadFragment(new RegisterFragment());
-            }
+                if (getActivity() != null && getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).loadFragment(new RegisterFragment());
+                }
         });
 
         forgotPasswordLink.setOnClickListener(v -> {
-            if (getActivity() instanceof MainActivity) {
+            if (getActivity() != null && getActivity() instanceof MainActivity) {
                 ((MainActivity) getActivity()).loadFragment(new ForgotPasswordFragment());
             }
         });

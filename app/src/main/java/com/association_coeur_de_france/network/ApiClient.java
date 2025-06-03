@@ -7,8 +7,10 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.association_coeur_de_france.model.DonModel;
 import com.association_coeur_de_france.model.UserModel;
 
 import org.json.JSONException;
@@ -119,8 +121,6 @@ public class ApiClient {
     }
 
 
-
-
     // Garde les autres méthodes telles quelles
 
     public void registerUser(UserModel user, Response.Listener<String> listener, Response.ErrorListener errorListener) {
@@ -208,5 +208,55 @@ public class ApiClient {
 
         addToRequestQueue(postRequest);
     }
+
+    public interface ApiCallback<T> {
+        void onSuccess(T response);
+        void onError(Throwable error);
+    }
+
+    public void enregistrerDon(DonModel donModel, final ApiCallback<String> callback) {
+        String url = BASE_URL + "/don.php";
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("user_id", donModel.getUserId());
+            jsonBody.put("montant", donModel.getMontant());
+            jsonBody.put("contribution", donModel.getContribution());
+            jsonBody.put("total", donModel.getTotal());
+            jsonBody.put("date", donModel.getDate()); // timestamp en ms
+
+            Log.d("API_REQUEST", "Requête JSON envoyée : " + jsonBody.toString());
+        } catch (JSONException e) {
+            Log.e("API_ERROR", "Erreur JSON lors de la création du corps de la requête", e);
+            callback.onError(e);
+            return;
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
+                response -> {
+                    Log.d("API_RESPONSE", "Réponse reçue : " + response.toString());
+                    callback.onSuccess(response.toString());  // Passe la réponse brute pour analyse
+                },
+                error -> {
+                    Log.e("API_ERROR", "Erreur lors de la requête API", error);
+                    callback.onError(error);
+                }
+        ) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
+
+        // Optionnel : augmenter timeout pour éviter les timeout trop courts
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000, // 10 secondes timeout
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        requestQueue.add(request);
+    }
+
+
 
 }
