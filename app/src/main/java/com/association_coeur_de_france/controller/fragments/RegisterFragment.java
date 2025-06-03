@@ -108,11 +108,15 @@ public class RegisterFragment extends Fragment {
     }
 
     private void sendUserData(UserModel user) {
+
         ApiClient.getInstance(requireContext()).registerUser(user,
                 response -> {
                     Toast.makeText(getContext(), "Inscription réussie !", Toast.LENGTH_SHORT).show();
                     registerButton.setEnabled(true);
-                    // Tu peux aussi naviguer vers login ou autre ici
+                    if (getActivity() != null && getActivity() instanceof MainActivity) {
+                        ((MainActivity) getActivity()).loadFragment(new LoginFragment());
+                    }
+
                 },
                 error -> {
                     if (error.getCause() != null) {

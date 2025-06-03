@@ -1,5 +1,6 @@
 package com.association_coeur_de_france.controller.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.association_coeur_de_france.R;
+import com.association_coeur_de_france.controller.MainActivity;
 import com.association_coeur_de_france.network.ApiClient;
 
 public class ForgotPasswordFragment extends Fragment {
@@ -48,6 +50,10 @@ public class ForgotPasswordFragment extends Fragment {
                     emailEditText.setText("");
                     sendButton.setEnabled(true);
                     progressBar.setVisibility(View.GONE);
+
+                    if (getActivity() != null && getActivity() instanceof MainActivity) {
+                        ((MainActivity) getActivity()).loadFragment(new LoginFragment());
+                    }
                 }
 
                 @Override

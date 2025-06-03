@@ -99,10 +99,20 @@
             android:layout_marginBottom="24dp" />
 
         <Button
-            android:id="@+id/logoutButton"
+                android:id="@+id/logoutButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Déconnexion"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/darkblue"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/historiqueDon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Déconnexion"
+            android:text="Historique des dons"
             android:textAllCaps="false"
             android:backgroundTint="@color/darkblue"
             android:textColor="#FFFFFF"
