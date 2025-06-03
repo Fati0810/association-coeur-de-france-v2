@@ -110,6 +110,8 @@
             android:id="@+id/etCustomAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:padding="12dp"
             android:hint="@string/custom_amount_hint"
             android:inputType="number"
             android:textColor="@color/black"

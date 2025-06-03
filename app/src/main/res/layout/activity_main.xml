@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/headerFragment"
         android:name="com.association_coeur_de_france.controller.fragments.HeaderFragment"
         android:layout_width="0dp"
@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <fragment
+    <FrameLayout
         android:id="@+id/footerFragment"
         android:name="com.association_coeur_de_france.controller.fragments.FooterFragment"
         android:layout_width="0dp"
