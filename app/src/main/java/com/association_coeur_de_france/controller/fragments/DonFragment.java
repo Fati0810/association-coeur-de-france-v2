@@ -22,7 +22,6 @@ public class DonFragment extends Fragment {
     private int selectedAmount = 0;
 
     public DonFragment() {
-        // Constructeur vide requis
     }
 
     @Override

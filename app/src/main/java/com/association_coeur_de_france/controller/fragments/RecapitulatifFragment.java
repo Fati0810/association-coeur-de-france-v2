@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.association_coeur_de_france.R;
+import com.association_coeur_de_france.controller.MainActivity;
 import com.association_coeur_de_france.model.DonModel;
 import com.association_coeur_de_france.network.ApiClient;
 
@@ -138,7 +139,9 @@ public class RecapitulatifFragment extends Fragment {
 
                         Toast.makeText(getContext(), message + "\nN° Transaction : " + numeroTransaction, Toast.LENGTH_LONG).show();
 
-                        // Navigation vers le ticket ou autre logique à ajouter ici
+                        if (getActivity() != null && getActivity() instanceof MainActivity) {
+                            ((MainActivity) getActivity()).loadFragment(new ConfirmationFragment());
+                        }
                     } else {
                         Toast.makeText(getContext(), "Erreur serveur : " + json.optString("message"), Toast.LENGTH_LONG).show();
                     }
