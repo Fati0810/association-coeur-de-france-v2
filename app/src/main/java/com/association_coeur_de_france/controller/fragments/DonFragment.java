@@ -62,8 +62,7 @@ public class DonFragment extends Fragment {
 
         return view;
     }
-
-    // Récupère le montant saisi ou sélectionné
+    
     private int getMontantSelectionne() {
         String customText = etCustomAmount.getText().toString().trim();
         if (!customText.isEmpty()) {

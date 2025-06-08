@@ -26,7 +26,7 @@ public class ApiClient {
 
     // private static final String BASE_URL = "http://192.168.1.100:8888/mon_api/";
 
-    private static final String BASE_URL = "http://192.168.1.70:8888/mon_api/";
+    private static final String BASE_URL = "http://192.168.1.69:8888/mon_api/";
 
 
     private ApiClient(Context context) {
@@ -215,7 +215,7 @@ public class ApiClient {
     }
 
     public void enregistrerDon(DonModel donModel, final ApiCallback<String> callback) {
-        String url = BASE_URL + "/don.php";
+        String url = BASE_URL + "/insert_don.php";
 
         JSONObject jsonBody = new JSONObject();
         try {
@@ -223,7 +223,11 @@ public class ApiClient {
             jsonBody.put("montant", donModel.getMontant());
             jsonBody.put("contribution", donModel.getContribution());
             jsonBody.put("total", donModel.getTotal());
-            jsonBody.put("date", donModel.getDate()); // timestamp en ms
+
+            // Convertir le long en String pour la date
+            long dateLong = donModel.getDate();
+            String dateString = String.valueOf(dateLong);
+            jsonBody.put("date", dateString);
 
             Log.d("API_REQUEST", "Requête JSON envoyée : " + jsonBody.toString());
         } catch (JSONException e) {
@@ -235,11 +239,32 @@ public class ApiClient {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
                 response -> {
                     Log.d("API_RESPONSE", "Réponse reçue : " + response.toString());
-                    callback.onSuccess(response.toString());  // Passe la réponse brute pour analyse
+                    callback.onSuccess(response.toString());
                 },
                 error -> {
-                    Log.e("API_ERROR", "Erreur lors de la requête API", error);
-                    callback.onError(error);
+                    String errorMessage = "Erreur inconnue";
+                    if (error != null) {
+                        if (error.getMessage() != null) {
+                            errorMessage = error.getMessage();
+                        }
+
+                        if (error.networkResponse != null) {
+                            int statusCode = error.networkResponse.statusCode;
+                            String body = "";
+                            if (error.networkResponse.data != null) {
+                                try {
+                                    body = new String(error.networkResponse.data, "UTF-8");
+                                } catch (Exception e) {
+                                    Log.e("API_ERROR", "Erreur décodage corps de réponse", e);
+                                    body = new String(error.networkResponse.data);
+                                }
+                            }
+                            Log.e("API_ERROR", "Status code: " + statusCode + ", body: " + body);
+                            errorMessage += "\nStatus code: " + statusCode + "\nBody: " + body;
+                        }
+                    }
+                    Log.e("API_ERROR", "Erreur lors de la requête API: " + errorMessage);
+                    callback.onError(new Throwable(errorMessage));
                 }
         ) {
             @Override
@@ -248,14 +273,15 @@ public class ApiClient {
             }
         };
 
-        // Optionnel : augmenter timeout pour éviter les timeout trop courts
+        // Timeout
         request.setRetryPolicy(new DefaultRetryPolicy(
-                10000, // 10 secondes timeout
+                10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         requestQueue.add(request);
     }
+
 
 
 
