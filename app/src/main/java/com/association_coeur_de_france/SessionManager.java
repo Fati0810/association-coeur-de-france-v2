@@ -69,6 +69,35 @@ public class SessionManager {
         return sharedPreferences.getString("first_name", null);
     }
 
+    public String getLastName() {
+        return sharedPreferences.getString("last_name", null);
+    }
+
+    public String getBirthdate() {
+        return sharedPreferences.getString("birthdate", null);
+    }
+
+    public String getEmail() {
+        return sharedPreferences.getString("email", null);
+    }
+
+    public String getAddress() {
+        return sharedPreferences.getString("address", null);
+    }
+
+    public String getPostalCode() {
+        return sharedPreferences.getString("postal_code", null);
+    }
+
+    public String getCity() {
+        return sharedPreferences.getString("city", null);
+    }
+
+    public String getCountry() {
+        return sharedPreferences.getString("country", null);
+    }
+
+
     // Ajouter d’autres getters selon besoin...
 
     // Supprimer la session (déconnexion)

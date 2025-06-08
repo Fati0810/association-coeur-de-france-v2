@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.association_coeur_de_france.R;
+import com.association_coeur_de_france.SessionManager;
 import com.association_coeur_de_france.controller.MainActivity;
 import com.association_coeur_de_france.model.DonModel;
 import com.association_coeur_de_france.network.ApiClient;
@@ -51,27 +52,23 @@ public class RecapitulatifFragment extends Fragment {
         checkboxAccepted = view.findViewById(R.id.checkboxAccepted);
         payButton = view.findViewById(R.id.payButton);
 
-        // Récupérer le montant depuis SharedPreferences (en supposant stocké en int centimes ou arrondi)
+        // Récupération du montant pré-sélectionné depuis SharedPreferences
         SharedPreferences prefs = requireContext().getSharedPreferences("don_prefs", Context.MODE_PRIVATE);
         int amount = prefs.getInt("montant_don", 0);
-        donInput.setText(String.format(Locale.FRANCE, "%.2f", amount * 1.0)); // convertir en décimal affichage
+        donInput.setText(String.format(Locale.FRANCE, "%.2f", amount * 1.0));
 
+        // Mise à jour du total
         TextWatcher watcher = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) { }
-            @Override
-            public void afterTextChanged(Editable s) {
-                updateTotal();
-            }
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override public void afterTextChanged(Editable s) { updateTotal(); }
         };
 
         donInput.addTextChangedListener(watcher);
         contributionInput.addTextChangedListener(watcher);
-
         updateTotal();
 
+        // Bouton de paiement
         payButton.setOnClickListener(v -> {
             if (checkboxUnderstood.isChecked() && checkboxAccepted.isChecked()) {
                 proceedPayment();
@@ -87,7 +84,7 @@ public class RecapitulatifFragment extends Fragment {
             if (text.isEmpty()) {
                 return 0.0;
             }
-            return Double.parseDouble(text.replace(',', '.')); // au cas où utilisateur met une virgule
+            return Double.parseDouble(text.replace(',', '.'));
         } catch (NumberFormatException e) {
             return 0.0;
         }
@@ -104,13 +101,30 @@ public class RecapitulatifFragment extends Fragment {
         double donValue = parseDoubleSafe(donInput);
         double contributionValue = parseDoubleSafe(contributionInput);
         double totalValue = parseDoubleSafe(totalInput);
-
         long currentTimestamp = System.currentTimeMillis();
 
-        SharedPreferences prefs = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
-        int userId = prefs.getInt("id", 0);
+        // Utilisation de SessionManager pour récupérer l'utilisateur connecté
+        SessionManager sessionManager = new SessionManager(requireContext());
+        int userId = sessionManager.getId();
 
-        // Attention : ton modèle DonModel prend des int, ici on convertit en centimes (int)
+        Log.d("DEBUG_SESSION", "UserId récupéré depuis SessionManager : " + userId);
+
+        if (userId == -1) {
+            Toast.makeText(getContext(), "Erreur : utilisateur non connecté", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        String firstName = sessionManager.getFirstName() != null ? sessionManager.getFirstName() : "";
+        String lastName = sessionManager.getLastName() != null ? sessionManager.getLastName() : "";
+        String birthdate = sessionManager.getBirthdate() != null ? sessionManager.getBirthdate() : "";
+        String email = sessionManager.getEmail() != null ? sessionManager.getEmail() : "";
+        String address = sessionManager.getAddress() != null ? sessionManager.getAddress() : "";
+        String postalCode = sessionManager.getPostalCode() != null ? sessionManager.getPostalCode() : "";
+        String city = sessionManager.getCity() != null ? sessionManager.getCity() : "";
+        String country = sessionManager.getCountry() != null ? sessionManager.getCountry() : "";
+
+
+        // Créer l'objet de don
         DonModel don = new DonModel(userId,
                 (int)(donValue * 100),
                 (int)(contributionValue * 100),
@@ -121,8 +135,10 @@ public class RecapitulatifFragment extends Fragment {
                 ", don=" + don.getMontant() +
                 ", contribution=" + don.getContribution() +
                 ", total=" + don.getTotal() +
-                ", timestamp=" + don.getDate());
-
+                ", timestamp=" + don.getDate() +
+                ", nom=" + lastName +
+                ", prénom=" + firstName +
+                ", email=" + email);
 
         ApiClient apiClient = ApiClient.getInstance(requireContext());
         apiClient.enregistrerDon(don, new ApiClient.ApiCallback<String>() {
@@ -130,10 +146,8 @@ public class RecapitulatifFragment extends Fragment {
             public void onSuccess(String response) {
                 try {
                     Log.d("DEBUG_PAYMENT", "Réponse brute de l'API : " + response);
-
                     JSONObject json = new JSONObject(response);
-                    boolean success = json.getBoolean("success");
-                    if (success) {
+                    if (json.getBoolean("success")) {
                         String message = json.getString("message");
                         String numeroTransaction = json.getString("numero_transaction");
 
@@ -153,9 +167,13 @@ public class RecapitulatifFragment extends Fragment {
             @Override
             public void onError(Throwable error) {
                 Log.e("API_ERROR", "Erreur lors de l'enregistrement du don", error);
-                error.printStackTrace(); // Affiche la trace complète dans Logcat
-                Toast.makeText(getContext(), "Erreur lors de l'enregistrement : " + error.getMessage(), Toast.LENGTH_LONG).show();
+                String message = error.getMessage();
+                if (message == null || message.isEmpty()) {
+                    message = "Erreur inconnue lors de l'enregistrement";
+                }
+                Toast.makeText(getContext(), "Erreur lors de l'enregistrement : " + message, Toast.LENGTH_LONG).show();
             }
+
 
         });
     }
