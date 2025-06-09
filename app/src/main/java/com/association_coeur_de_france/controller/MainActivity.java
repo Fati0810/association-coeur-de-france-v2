@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import com.association_coeur_de_france.R;
 import com.association_coeur_de_france.controller.fragments.FooterFragment;
+import com.association_coeur_de_france.controller.fragments.ForgotPasswordFragment;
 import com.association_coeur_de_france.controller.fragments.HeaderFragment;
 import com.association_coeur_de_france.controller.fragments.HomeFragment;
 import com.association_coeur_de_france.controller.fragments.DonFragment;
@@ -14,8 +15,11 @@ import com.association_coeur_de_france.controller.fragments.MessageFragment;
 import com.association_coeur_de_france.controller.fragments.MouvementFragment;
 import com.association_coeur_de_france.controller.fragments.LoginFragment;
 import com.association_coeur_de_france.controller.fragments.ProfilFragment;
+import com.association_coeur_de_france.controller.fragments.RegisterFragment;
 
 public class MainActivity extends AppCompatActivity implements FooterFragment.OnFooterButtonClickListener {
+
+    private FooterFragment footerFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +31,19 @@ public class MainActivity extends AppCompatActivity implements FooterFragment.On
                 .replace(R.id.headerFragment, new HeaderFragment())
                 .commit();
 
+        footerFragment = new FooterFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.footerFragment, new FooterFragment())
+                .replace(R.id.footerFragment, footerFragment)
                 .commit();
 
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.mainContent, new LoginFragment())
                 .commit();
+
+        // Cacher footer au démarrage car on est sur Login
+       // setFooterVisibility(false);
     }
 
     @Override
@@ -63,8 +71,27 @@ public class MainActivity extends AppCompatActivity implements FooterFragment.On
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.mainContent, fragment)
-                .addToBackStack(null) // Ajoute la transaction dans la pile pour revenir en arrière
+                .addToBackStack(null)
                 .commit();
+
+        // Gérer visibilité footer selon fragment
+        if (fragment instanceof LoginFragment ||
+                fragment instanceof RegisterFragment ||  // Ajoute ce fragment si tu en as un
+                fragment instanceof ForgotPasswordFragment) {  // Idem ici
+            setFooterVisibility(false);
+        } else {
+            setFooterVisibility(true);
+        }
+    }
+
+    private void setFooterVisibility(boolean visible) {
+        if (footerFragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                    .replace(R.id.footerFragment, visible ? footerFragment : new Fragment())
+                    .commit();
+        }
     }
 }
 
