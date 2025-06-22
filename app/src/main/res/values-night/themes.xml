@@ -1,7 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Associationcoeurdefrance" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Couleurs principales -->
+        <item name="colorPrimary">#6200EE</item>
+        <item name="colorOnPrimary">#2E2E2E</item>
+
+
+        <item name="colorOnBackground">#2E2E2E</item>
+
+        <!-- Couleurs des surfaces (cartes, champs...) -->
+        <item name="colorSurface">#2E2E2E</item>
+        <item name="colorOnSurface">#000000</item>
+
+        <!-- Couleurs d'erreur -->
+        <item name="colorError">#B00020</item>
+        <item name="colorOnError">#2E2E2E</item>
+
+        <!-- Polices / autres configs si besoin -->
+        <item name="android:windowBackground">#2E2E2E</item>
     </style>
 </resources>

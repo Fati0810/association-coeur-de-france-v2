@@ -62,7 +62,7 @@ public class DonFragment extends Fragment {
 
         return view;
     }
-    
+
     private int getMontantSelectionne() {
         String customText = etCustomAmount.getText().toString().trim();
         if (!customText.isEmpty()) {
@@ -72,12 +72,11 @@ public class DonFragment extends Fragment {
                 Toast.makeText(getContext(), "Veuillez entrer un montant valide.", Toast.LENGTH_SHORT).show();
                 return -1;
             }
-        } else if (selectedAmount > 0) {
-            return selectedAmount;
         } else {
-            return -1;
+            return selectedAmount > 0 ? selectedAmount : -1;
         }
     }
+
 
     // Gère la sélection d'un bouton de montant fixe
     private void selectAmount(int amount) {
@@ -86,3 +85,4 @@ public class DonFragment extends Fragment {
         Toast.makeText(getContext(), "Montant sélectionné : " + amount + "€", Toast.LENGTH_SHORT).show();
     }
 }
+
