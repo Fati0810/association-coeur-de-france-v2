@@ -11,7 +11,7 @@
         android:id="@+id/titleRecap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MON RÉCAPITULATIF"
+        android:text="Mon récapitulatif"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/darkblue"
@@ -19,7 +19,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"/>
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="32dp"/>
 
     <!-- Don -->
     <TextView

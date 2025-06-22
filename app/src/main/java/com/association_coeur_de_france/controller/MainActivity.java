@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements FooterFragment.On
                 .commit();
 
         // Cacher footer au démarrage car on est sur Login
-       // setFooterVisibility(false);
+        setFooterVisibility(false);
     }
 
     @Override
@@ -93,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements FooterFragment.On
                     .commit();
         }
     }
+
+
 }
 
 

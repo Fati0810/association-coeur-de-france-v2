@@ -1,7 +1,5 @@
 package com.association_coeur_de_france.controller.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -75,13 +73,13 @@ public class LoginFragment extends Fragment {
             @Override
             public void onSuccess(int id, String firstName, String lastName, String email, String token,
                                   String birthdate, String address, String postalCode,
-                                  String city, String country, String createdAt) {
+                                  String city, String country) {
                 loginButton.setEnabled(true);
 
                 SessionManager sessionManager = new SessionManager(requireContext());
                 sessionManager.saveSession(id, firstName, lastName, email, token,
                         birthdate, address, postalCode,
-                        city, country, createdAt);
+                        city, country);
 
                 Toast.makeText(getContext(), "Connexion réussie !", Toast.LENGTH_SHORT).show();
 

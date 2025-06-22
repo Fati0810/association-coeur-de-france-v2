@@ -26,7 +26,7 @@ public class ApiClient {
 
     // private static final String BASE_URL = "http://192.168.1.100:8888/mon_api/";
 
-    private static final String BASE_URL = "http://192.168.1.69:8888/mon_api/";
+    private static final String BASE_URL = "http://192.168.1.70:8888/";
 
 
     private ApiClient(Context context) {
@@ -56,24 +56,33 @@ public class ApiClient {
     public interface LoginCallback {
         void onSuccess(int id, String firstName, String lastName, String email, String token,
                        String birthdate, String address, String postalCode,
-                       String city, String country, String createdAt);
+                       String city, String country);
         void onError(String message);
     }
 
 
     // Méthode loginUser avec Volley et callback personnalisé
     public void loginUser(String email, String password, LoginCallback callback) {
-        String url = BASE_URL + "login_user.php";
+        String url = BASE_URL + "api/login";
 
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("email", email);
+            jsonBody.put("password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            callback.onError("Erreur création JSON");
+            return;
+        }
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
                 response -> {
+                    Log.d("LOGIN_RESPONSE", response.toString());
                     try {
-                        JSONObject json = new JSONObject(response);
-                        String status = json.getString("status");
+                        String status = response.getString("status");
                         if (status.equals("success")) {
-                            String token = json.getString("token");
-
-                            JSONObject userJson = json.getJSONObject("user");
+                            String token = response.getString("token");
+                            JSONObject userJson = response.getJSONObject("user");
                             int id = userJson.getInt("id");
                             String firstName = userJson.getString("first_name");
                             String lastName = userJson.getString("last_name");
@@ -83,16 +92,12 @@ public class ApiClient {
                             String postalCode = userJson.optString("postal_code", "");
                             String city = userJson.optString("city", "");
                             String country = userJson.optString("country", "");
-                            String createdAt = userJson.optString("created_at", "");
 
-                            // Passe toutes les infos dans le callback
-                            callback.onSuccess(
-                                    id, firstName, lastName, userEmail, token,
-                                    birthdate, address, postalCode, city, country, createdAt
-                            );
+                            callback.onSuccess(id, firstName, lastName, userEmail, token,
+                                    birthdate, address, postalCode, city, country);
 
                         } else {
-                            String message = json.optString("message", "Erreur inconnue");
+                            String message = response.optString("message", "Erreur inconnue");
                             callback.onError(message);
                         }
                     } catch (JSONException e) {
@@ -101,30 +106,23 @@ public class ApiClient {
                     }
                 },
                 error -> {
-                    callback.onError("Erreur réseau : " + error.getMessage());
-                }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("email", email);
-                params.put("password", password);
-                return params;
-            }
-        };
+                    callback.onError("Erreur réseau : " + (error.getMessage() != null ? error.getMessage() : "Erreur inconnue"));
+                });
 
-        postRequest.setRetryPolicy(new DefaultRetryPolicy(
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(
                 10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
-        addToRequestQueue(postRequest);
+        addToRequestQueue(jsonRequest);
     }
+
 
 
     // Garde les autres méthodes telles quelles
 
     public void registerUser(UserModel user, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-        String url = BASE_URL + "insert_user.php";
+        String url = BASE_URL + "api/register";
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url, listener, errorListener) {
             @Override
@@ -153,7 +151,7 @@ public class ApiClient {
     }
 
     public void getUserById(int userId, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-        String url = BASE_URL + "get_user.php?id=" + userId;
+        String url = BASE_URL + "api/user?id=" + userId;
 
         StringRequest getRequest = new StringRequest(Request.Method.GET, url, listener, errorListener);
 
@@ -171,7 +169,7 @@ public class ApiClient {
     }
 
     public void resetPassword(String email, ResetPasswordCallback callback) {
-        String url = BASE_URL + "forgot_password.php";
+        String url = BASE_URL + "api/reset-password";
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -215,7 +213,7 @@ public class ApiClient {
     }
 
     public void enregistrerDon(DonModel donModel, final ApiCallback<String> callback) {
-        String url = BASE_URL + "/insert_don.php";
+        String url = BASE_URL + "api/don";
 
         JSONObject jsonBody = new JSONObject();
         try {

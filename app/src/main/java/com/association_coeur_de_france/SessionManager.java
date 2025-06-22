@@ -36,7 +36,7 @@ public class SessionManager {
 
     public void saveSession(int id, String firstName, String lastName, String email, String token,
                             String birthdate, String address, String postalCode,
-                            String city, String country, String createdAt) {
+                            String city, String country) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putInt("id", id);
@@ -48,8 +48,7 @@ public class SessionManager {
         editor.putString("address", address);
         editor.putString("postal_code", postalCode);
         editor.putString("city", city);
-        editor.putString("country", country);
-        editor.putString("created_at", createdAt);
+        editor.putString("country", country);;
 
         editor.apply();
     }
